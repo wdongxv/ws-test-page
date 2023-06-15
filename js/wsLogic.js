@@ -15,9 +15,10 @@ function connectToServer() {
         ws.onmessage = function (event) {
             createLogLine(event.data);
         };
-        ws.onclose = function () {
-            document.getElementById("connectionStatus").innerHTML = "Disconnected";
+        ws.onclose = function (event) {
+            document.getElementById("connectionStatus").innerHTML = `Disconnected code:${event.code} reason:${event.reason}`;
         };
+        
         icon.style.visibility = "hidden";
         icon.title = '';
     } catch (e) {
